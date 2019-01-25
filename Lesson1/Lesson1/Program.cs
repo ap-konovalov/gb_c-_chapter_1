@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Lesson1
 {
@@ -41,6 +42,8 @@ namespace Lesson1
 
             PointsDistance(x1, x2, y1, y2);
 
+            VariableExchange();
+
         }
 
 //            Задание 1
@@ -72,6 +75,29 @@ namespace Lesson1
         {
             double r = Math.Sqrt(Math.Pow(_x2-_x1,2) + Math.Pow(_y2 - _y1,2));
             Console.WriteLine($"Расстояние между точками = {r:F2}");
+        }
+
+//            Задание 4
+//        Написать программу обмена значениями двух переменных:
+//        а) с использованием третьей переменной;
+//        б) *без использования третьей переменной.
+
+        private static void VariableExchange()
+        {
+            Console.WriteLine("Введите переменную 1 для обмена значенями:\n");
+            var variable1 = Console.ReadLine();
+
+            Console.WriteLine("Введите переменную 2 для обмена значенями:\n");
+            var variable2 = Console.ReadLine();
+
+            Console.WriteLine($"Вы ввели:{variable1} и {variable2}");
+
+            var variable3 = variable2;
+            variable2 = variable1;
+            variable1 = variable3;
+
+            Console.WriteLine($"Результат обмена:{variable1} и {variable2}");
+
         }
 
     }
