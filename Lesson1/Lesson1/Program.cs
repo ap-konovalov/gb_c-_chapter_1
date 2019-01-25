@@ -84,19 +84,27 @@ namespace Lesson1
 
         private static void VariableExchange()
         {
-            Console.WriteLine("Введите переменную 1 для обмена значенями:\n");
-            var variable1 = Console.ReadLine();
+            Console.WriteLine("Введите число 1 для обмена значенями:");
+            int variable1 = Convert.ToInt32(Console.ReadLine()) ;
 
-            Console.WriteLine("Введите переменную 2 для обмена значенями:\n");
-            var variable2 = Console.ReadLine();
+            Console.WriteLine("Введите число 2 для обмена значенями:");
+            int variable2 = Convert.ToInt32(Console.ReadLine()) ;
 
             Console.WriteLine($"Вы ввели:{variable1} и {variable2}");
 
-            var variable3 = variable2;
+            int variable3 = variable2;
             variable2 = variable1;
             variable1 = variable3;
 
             Console.WriteLine($"Результат обмена:{variable1} и {variable2}");
+
+            //Обмен с 2 переменными
+
+            variable1 = variable1 + variable2;
+            variable2 = variable1 - variable2;
+            variable1 = variable1 - variable2;
+
+            Console.WriteLine($"Результат обратного обмена:{variable1} и {variable2}");
 
         }
 
