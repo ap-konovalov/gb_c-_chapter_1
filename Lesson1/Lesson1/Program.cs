@@ -27,6 +27,20 @@ namespace Lesson1
 
             BodyMassIndexCalculation(weight, growth);
 
+            Console.Write("Введите координаты точки x1\n");
+            double x1 = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Введите координаты точки x2\n");
+            double x2 = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Введите координаты точки y1\n");
+            double y1 = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Введите координаты точки y2\n");
+            double y2 = Convert.ToDouble(Console.ReadLine());
+
+            PointsDistance(x1, x2, y1, y2);
+
         }
 
 //            Задание 1
@@ -46,8 +60,19 @@ namespace Lesson1
 
         private static void BodyMassIndexCalculation(double m, double h)
         {
-            double BodyMassIndex = m/(h*h);
-            Console.WriteLine($"Ваш ИМТ = {BodyMassIndex:0.0000}");
+            double bodyMassIndex = m/(h*h);
+            Console.WriteLine($"Ваш ИМТ = {bodyMassIndex:0.0000}");
         }
+
+//            Задание 3
+//        а) Написать программу, которая подсчитывает расстояние между точками с координатами x1, y1 и x2,y2 по формуле r=Math.Sqrt(Math.Pow(x2-x1,2)+Math.Pow(y2-y1,2)). Вывести результат, используя спецификатор формата .2f (с двумя знаками после запятой);
+//        б) *Выполнить предыдущее задание, оформив вычисления расстояния между точками в виде метода.
+
+        private static void PointsDistance (double _x1, double _x2, double _y1, double _y2)
+        {
+            double r = Math.Sqrt(Math.Pow(_x2-_x1,2) + Math.Pow(_y2 - _y1,2));
+            Console.WriteLine($"Расстояние между точками = {r:F2}");
+        }
+
     }
 }
