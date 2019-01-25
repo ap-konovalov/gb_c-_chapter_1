@@ -5,6 +5,7 @@ namespace Lesson1
 {
     class Program
     {
+
 //            Коновалов А.
 
         static void Main(string[] args)
@@ -113,6 +114,11 @@ namespace Lesson1
             Console.WriteLine($"Результат обратного обмена:{variable1} и {variable2}");
 
         }
+
+//            Задание 5
+//        а) Написать программу, которая выводит на экран ваше имя, фамилию и город проживания.
+//        б) *Сделать задание, только вывод организовать в центре экрана.
+//        в) **Сделать задание б с использованием собственных методов (например, Print(string ms, int x,int y).
 
         private static void PrintOnCenter(string _name, string _family, string _city)
         {
