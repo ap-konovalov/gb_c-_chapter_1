@@ -9,6 +9,7 @@ namespace Lesson1
 
         static void Main(string[] args)
         {
+
             Console.WriteLine("Введите имя");
             string name = Console.ReadLine();
 
@@ -43,6 +44,11 @@ namespace Lesson1
             PointsDistance(x1, x2, y1, y2);
 
             VariableExchange();
+
+            Console.WriteLine("Введите город проживания");
+            string city = Console.ReadLine();
+
+            PrintOnCenter(name,surname,city);
 
         }
 
@@ -106,6 +112,13 @@ namespace Lesson1
 
             Console.WriteLine($"Результат обратного обмена:{variable1} и {variable2}");
 
+        }
+
+        private static void PrintOnCenter(string _name, string _family, string _city)
+        {
+            Console.Clear();
+            Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 2);
+            Console.WriteLine($"Вас зовут {_name}, ваша фамилия {_family}, город проживания {_city}");
         }
 
     }
