@@ -18,9 +18,14 @@ namespace Lesson2
 //            Задание 2
 //            Написать метод подсчета количества цифр числа.
 
-            Console.WriteLine("Введите число");
+            Console.WriteLine("Введите число для подсчета количества цифр в нем");
             int number = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine(NumbsInNumber(number));
+
+//            Задание 3
+//            С клавиатуры вводятся числа, пока не будет введен 0. Подсчитать сумму всех нечётных положительных чисел.
+
+            CounOfOddNumbers();
 
         }
 
@@ -61,5 +66,23 @@ namespace Lesson2
 
             return count;
         }
+
+        public static void CounOfOddNumbers()
+        {
+
+            int number = 1;
+            int sum = 0;
+
+            while (number != 0)
+            {
+                Console.WriteLine("Enter number. For exit press 0");
+                number = Convert.ToInt32(Console.ReadLine());
+                if (number > 0 && number % 2 != 0) sum += number;
+            }
+
+            Console.WriteLine($"Sum of odd numbers = {sum}");
+
+        }
+
     }
 }
