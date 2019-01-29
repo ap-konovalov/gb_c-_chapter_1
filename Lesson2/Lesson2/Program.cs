@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using System.Security.Cryptography;
 using System.Xml.Schema;
 
@@ -26,6 +27,27 @@ namespace Lesson2
 //            С клавиатуры вводятся числа, пока не будет введен 0. Подсчитать сумму всех нечётных положительных чисел.
 
             CounOfOddNumbers();
+
+//            Задание 4
+//            Реализовать метод проверки логина и пароля. На вход подается логин и пароль.
+//            На выходе истина, если прошел авторизацию, и ложь, если не прошел
+//            (Логин: root, Password: GeekBrains). Используя метод проверки логина и
+//            пароля, написать программу: пользователь вводит логин и пароль, программа
+//            пропускает его дальше или не пропускает. С помощью цикла do while ограничить
+//            ввод пароля тремя попытками.
+
+            int CoutOfAttempts = 3;
+            do
+            {
+                Console.WriteLine("Введите логин");
+                string login = Console.ReadLine();
+                Console.WriteLine("Введите пароль");
+                string password =  Console.ReadLine();
+                if(IsRightPassword(login, password)) break ;
+                Console.WriteLine($"Осталось попыток: {CoutOfAttempts-1} ");
+                CoutOfAttempts--;
+
+            } while (CoutOfAttempts > 0);
 
         }
 
@@ -67,6 +89,9 @@ namespace Lesson2
             return count;
         }
 
+        /// <summary>
+        ///  Подсчитывает сумму всех нечётных положительных чисел
+        /// </summary>
         public static void CounOfOddNumbers()
         {
 
@@ -81,7 +106,22 @@ namespace Lesson2
             }
 
             Console.WriteLine($"Sum of odd numbers = {sum}");
+        }
 
+        /// <summary>
+        /// Проверка логина и пароля
+        /// </summary>
+        /// <param name="login">Логин</param>
+        /// <param name="password">Пароль</param>
+        /// <returns></returns>
+        private static bool IsRightPassword(string login, string password)
+        {
+            if (login == "root" && password == "GeekBrains")
+            {
+                Console.WriteLine("Добро пожаловать!");
+                return true;
+            }
+            return false;
         }
 
     }
