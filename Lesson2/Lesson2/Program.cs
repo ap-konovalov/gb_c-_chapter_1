@@ -33,7 +33,7 @@ namespace Lesson2
 
             #endregion
 
-            #region Task4
+            #region Task3
 
 //            Задание 3
 //            С клавиатуры вводятся числа, пока не будет введен 0. Подсчитать сумму всех нечётных положительных чисел.
@@ -105,9 +105,11 @@ namespace Lesson2
             else min = b;
 
             if (c < min)
+            {
                 return c;
-            else
-                return min;
+            }
+
+            return min;
         }
 
         /// <summary>
@@ -172,45 +174,24 @@ namespace Lesson2
             double weight = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine("Введите свой рост");
             double growth = Convert.ToDouble(Console.ReadLine());
-            double massDifference = 0;
 
-            do
+            var BodyMassIndex = weight/Math.Pow((growth/100),2) ;
+
+            if (BodyMassIndex >= 18.5 && BodyMassIndex <= 25)
             {
+                Console.WriteLine("Нормальная масса тела");
+            }
+            else if (BodyMassIndex < 18.5)
+            {
+                var massDifference = 18.5 * Math.Pow((growth / 100), 2);
+                Console.WriteLine($"Недостаточная (дефицит) масса тела, нужно набрать {massDifference - weight} кг.");
+            }
+            else
+            {
+                var massDifference = 25 * Math.Pow((growth / 100), 2);
+                Console.WriteLine($"Избыточная масса тела, нужно сбросить {weight - massDifference} кг.");
+            }
 
-                double BodyMassIndex = weight/Math.Pow((growth/100),2) ;
-
-                if (BodyMassIndex <= 18.5)
-                {
-                    massDifference += 1;
-                    weight += 1;
-                }
-
-                else if (BodyMassIndex <= 25 )
-                {
-                    if (massDifference == 0)
-                    {
-                        Console.WriteLine("Нормальная масса тела");
-                        break;
-                    }
-
-                    if (massDifference > 0)
-                    {
-                        Console.WriteLine($"Недостаточная (дефицит) масса тела, нужно набрать {massDifference} кг.");
-                        break;
-                    }
-
-                    Console.WriteLine($"Избыточная масса тела, нужно сбросить {-massDifference} кг.");
-                    break;
-
-                }
-
-                else
-                {
-                    massDifference -= 1;
-                    weight -= 1;
-                }
-
-            } while (true);
         }
 
         /// <summary>
