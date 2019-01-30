@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Design;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Xml.Schema;
 
 namespace Lesson2
@@ -11,10 +12,17 @@ namespace Lesson2
         {
             // Коновалов А.П.
 
-//             Задание 1
+            #region Task1
+
+ //             Задание 1
 //             Написать метод, возвращающий минимальное из трёх чисел.
 
-            Console.WriteLine(MaxNumber(1, 3, 5));
+            Console.WriteLine(MinNumber(1, 3, 5));
+
+
+            #endregion
+
+            #region Task2
 
 //            Задание 2
 //            Написать метод подсчета количества цифр числа.
@@ -23,11 +31,16 @@ namespace Lesson2
             int number = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine(NumbsInNumber(number));
 
+            #endregion
+
+            #region Task4
+
 //            Задание 3
 //            С клавиатуры вводятся числа, пока не будет введен 0. Подсчитать сумму всех нечётных положительных чисел.
 
             CounOfOddNumbers();
 
+            #endregion
 
             #region Task4
 
@@ -68,26 +81,33 @@ namespace Lesson2
 
             #endregion
 
+            #region Task7
+
+//         a) Разработать рекурсивный метод, который выводит на экран числа от a до b (a<b);
+
+            fromAtoB(2,5);
+
+            #endregion
         }
 
         /// <summary>
-        /// Возвращает максимум из трех чисел
+        /// Возвращает минимум из трех чисел
         /// </summary>
         /// <param name="a">число 1</param>
         /// <param name="b">число 2</param>
         /// <param name="c">число 3</param>
         /// <returns>Максимум из трех чисел</returns>
-        public static int MaxNumber(int a, int b, int c)
+        public static int MinNumber(int a, int b, int c)
         {
-            int max = 0;
+            int min = 0;
 
-            if (a >= b) max = a;
-            else max = b;
+            if (a <= b) min = a;
+            else min = b;
 
-            if (c > max)
+            if (c < min)
                 return c;
             else
-                return max;
+                return min;
         }
 
         /// <summary>
@@ -119,7 +139,7 @@ namespace Lesson2
 
             while (number != 0)
             {
-                Console.WriteLine("Enter number. For exit press 0");
+                Console.WriteLine("Подсчитываем сумму всех нечётных положительных чисел. Введите число \n Для выхода введите 0");
                 number = Convert.ToInt32(Console.ReadLine());
                 if (number > 0 && number % 2 != 0) sum += number;
             }
@@ -191,8 +211,21 @@ namespace Lesson2
                 }
 
             } while (true);
+        }
 
-
+        /// <summary>
+        /// Выводит числа от a до b
+        /// </summary>
+        /// <param name="a">Введите число "от"</param>
+        /// <param name="b">Введите число "до"</param>
+        public static void fromAtoB(int a, int b)
+        {
+            if (a <= b)
+            {
+                Console.Write(a + " ");
+                a++;
+                fromAtoB(a, b);
+            }
         }
 
 
