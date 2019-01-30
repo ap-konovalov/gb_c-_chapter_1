@@ -85,7 +85,7 @@ namespace Lesson2
 
 //         a) Разработать рекурсивный метод, который выводит на экран числа от a до b (a<b);
 
-            fromAtoB(2,5);
+            FromAtoB(2,5);
 
             #endregion
         }
@@ -99,7 +99,7 @@ namespace Lesson2
         /// <returns>Максимум из трех чисел</returns>
         public static int MinNumber(int a, int b, int c)
         {
-            int min = 0;
+            int min;
 
             if (a <= b) min = a;
             else min = b;
@@ -175,13 +175,13 @@ namespace Lesson2
             Console.WriteLine("Введите свой рост");
             double growth = Convert.ToDouble(Console.ReadLine());
 
-            var BodyMassIndex = weight/Math.Pow((growth/100),2) ;
+            var bodyMassIndex = weight/Math.Pow((growth/100),2) ;
 
-            if (BodyMassIndex >= 18.5 && BodyMassIndex <= 25)
+            if (bodyMassIndex >= 18.5 && bodyMassIndex <= 25)
             {
                 Console.WriteLine("Нормальная масса тела");
             }
-            else if (BodyMassIndex < 18.5)
+            else if (bodyMassIndex < 18.5)
             {
                 var massDifference = 18.5 * Math.Pow((growth / 100), 2);
                 Console.WriteLine($"Недостаточная (дефицит) масса тела, нужно набрать {massDifference - weight} кг.");
@@ -199,13 +199,13 @@ namespace Lesson2
         /// </summary>
         /// <param name="a">Введите число "от"</param>
         /// <param name="b">Введите число "до"</param>
-        public static void fromAtoB(int a, int b)
+        public static void FromAtoB(int a, int b)
         {
             if (a <= b)
             {
                 Console.Write(a + " ");
                 a++;
-                fromAtoB(a, b);
+                FromAtoB(a, b);
             }
         }
 
