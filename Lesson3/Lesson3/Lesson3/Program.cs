@@ -1,4 +1,5 @@
 ﻿using System;
+using Lesson3.Properties;
 
 // Коновалов А.П.
 // Задание 1
@@ -150,6 +151,36 @@ class Program
 
     result2 = complex3.Multi(complex4);
     Console.WriteLine("Умножение  " + result2.ToString());
+
+    #endregion
+
+    #region SumOfOddNumbers
+
+
+    var inputNumber = new Numbers();
+
+    inputNumber.GetValues();
+    Console.WriteLine(inputNumber.SumOfOdd());
+
+//    do
+//    {
+////      Console.WriteLine("Введите число");
+//      InputNumber.GetValue();
+//      InputNumber.number = Convert.ToInt32(Console.ReadLine());
+//
+//    } while (!InputNumber.IsZero());
+
+
+//    if (InputNumber.IsOdd())
+//    {
+//      Console.WriteLine("Нечетное число");
+//    }
+//
+//    if (InputNumber.IsZero())
+//    {
+//      Console.WriteLine("Вы ввели 0");
+//    }
+
 
     #endregion
 
