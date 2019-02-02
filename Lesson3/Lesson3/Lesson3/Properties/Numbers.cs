@@ -6,65 +6,45 @@ namespace Lesson3.Properties
     {
         private int number;
         private int sum = 0;
-        private string stringResult = string.Empty;
+        private string stringResult = "";
 
-
-
-
-//        public bool IsZero()
-//        {
-//            return number == 0;
-//        }
-
-//        public bool IsOdd()
-//        {
-//            return number % 2 != 0;
-//        }
-//
-//        public bool IsPositive()
-//        {
-//            return number > 0;
-//        }
-
+            /// <summary>
+            /// Запрашивает ввод с консоли. Считает сумму положительных нечетных чисел.
+            /// </summary>
         public void GetValues()
         {
+            Console.WriteLine("Считаем сумму положительных нечетных чисел.\nДля выхода и просмотра результата введите 0");
+            
             while (true)
             {
-                Console.WriteLine("Введите число");
+                Console.WriteLine("Введите число:");
 
                 var readedValue = Console.ReadLine();
 
                 if (readedValue == "0")
                 {
+                    Console.WriteLine($"Введенные положительных нечетные числа:{stringResult}");
+                    Console.WriteLine($"Их сумма равна: {sum}");
                     break;
                 }
 
                 var isParsed = int.TryParse(readedValue, out var result);
                 if (!isParsed)
                 {
+                    Console.WriteLine("Вы ввели не целое число");
                     continue;
                 }
 
-                if (result % 2 == 0 && result <= 0)
+                if (result % 2 == 0 || result <= 0)
                 {
                     continue;
                 }
 
+                sum += result;
                 stringResult = $"{stringResult} {result}";
-
+                
             }
 
-        }
-
-        public int SumOfOdd()
-        {
-
-            if (IsOdd() && IsPositive())
-            {
-                sum += number;
-            }
-
-            return sum;
         }
 
     }

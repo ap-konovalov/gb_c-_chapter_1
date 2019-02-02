@@ -2,9 +2,7 @@
 using Lesson3.Properties;
 
 // Коновалов А.П.
-// Задание 1
-//  а) Дописать структуру Complex, добавив метод вычитания комплексных чисел. Продемонстрировать работу структуры;
-//  б) Дописать класс Complex, добавив методы вычитания и произведения чисел. Проверить работу класса;
+
 
 #region StructComplex
 
@@ -111,6 +109,10 @@ class Program
   {
 
     #region StructComplexEx
+    // Задание 1
+//  а) Дописать структуру Complex, добавив метод вычитания комплексных чисел. Продемонстрировать работу структуры;
+//  б) Дописать класс Complex, добавив методы вычитания и произведения чисел. Проверить работу класса;
+    
 
     Complex complex1;
     complex1.re = 1;
@@ -155,32 +157,17 @@ class Program
     #endregion
 
     #region SumOfOddNumbers
-
+//    Задание 2
+//    а) С клавиатуры вводятся числа, пока не будет введен 0 (каждое число в новой строке). 
+//    Требуется подсчитать сумму всех нечетных положительных чисел. 
+//      Сами числа и сумму вывести на экран, используя tryParse;
+//
+//    б) Добавить обработку исключительных ситуаций на то, что могут
+//      быть введены некорректные данные. При возникновении ошибки вывести сообщение. Напишите соответствующую функцию;
 
     var inputNumber = new Numbers();
 
     inputNumber.GetValues();
-    Console.WriteLine(inputNumber.SumOfOdd());
-
-//    do
-//    {
-////      Console.WriteLine("Введите число");
-//      InputNumber.GetValue();
-//      InputNumber.number = Convert.ToInt32(Console.ReadLine());
-//
-//    } while (!InputNumber.IsZero());
-
-
-//    if (InputNumber.IsOdd())
-//    {
-//      Console.WriteLine("Нечетное число");
-//    }
-//
-//    if (InputNumber.IsZero())
-//    {
-//      Console.WriteLine("Вы ввели 0");
-//    }
-
 
     #endregion
 
