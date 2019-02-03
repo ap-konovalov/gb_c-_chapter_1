@@ -171,6 +171,19 @@ class Program
 
     #endregion
 
+    #region Fractions
+//    Задание 3
+//    Описать класс дробей - рациональных чисел, являющихся 
+//    отношением двух целых чисел. Предусмотреть методы 
+//    сложения, вычитания, умножения и деления дробей.
+    
+    Fraction f1 = new Fraction(1,3);
+    Fraction f2 = new Fraction(2,3);
+    Console.WriteLine(Fraction.Sum(f1,f2).Print()); 
+
+
+    #endregion
+
   }
 };
 
