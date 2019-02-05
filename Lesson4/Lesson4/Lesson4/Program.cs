@@ -18,6 +18,13 @@ namespace Lesson4
             Console.WriteLine($"Максимальный элемент массива: {tda.Max}");
             Console.WriteLine($"Номер максимального элемента:[{maxI},{maxJ}]");
 
+            TwoDimensionalArray file = new TwoDimensionalArray("data.txt");
+
+            foreach (var VARIABLE in file)
+            {
+                Console.WriteLine(VARIABLE);
+            }
+
         }
     }
 }

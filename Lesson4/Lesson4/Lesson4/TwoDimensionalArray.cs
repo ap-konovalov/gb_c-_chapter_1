@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.IO;
 
 namespace Lesson4
 {
@@ -8,6 +9,7 @@ namespace Lesson4
         private static Random rndnumb = new Random();
 
         int[,] Array;
+        private int[] filemassive;
 
         /// <summary>
         /// Создает двумерный массив и заполняет его цифрами
@@ -123,6 +125,31 @@ namespace Lesson4
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Создаем массив считывая для него данные из текстового файла
+        /// </summary>
+        /// <param name="filename">имя файла из которого читаем данные</param>
+        public TwoDimensionalArray(string filename)
+        {
+            StreamReader sr = new StreamReader("..\\..\\" + filename);
+
+          // Считываем 2 первых строки = размерность двумерного массива
+          int I = int.Parse(sr.ReadLine());
+          int J = int.Parse(sr.ReadLine());
+
+            int[,] filemassive = new int[I,J];
+
+            for (int i = 0; i < I; i++)
+            {
+                for (int j = 0; j < J; j++)
+                {
+                    filemassive[i,j] = int.Parse(sr.ReadLine());
+                }
+            }
+            sr.Close();
+
         }
     }
 }
