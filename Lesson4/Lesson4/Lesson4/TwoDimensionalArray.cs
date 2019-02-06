@@ -139,7 +139,6 @@ namespace Lesson4
             catch (FileNotFoundException)
             {
                 Console.WriteLine("ОШИБКА: Нет такого файла");
-//                throw;
             }
 
             StreamReader sr = new StreamReader("..\\..\\" + filename);
