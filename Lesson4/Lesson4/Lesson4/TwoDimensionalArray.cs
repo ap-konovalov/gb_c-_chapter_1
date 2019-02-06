@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using System.Security.Policy;
 
 namespace Lesson4
 {
@@ -59,7 +60,6 @@ namespace Lesson4
                 int max = Array[0, 0];
                 foreach (var number in Array)
                 {
-                    Console.WriteLine(number);
                     if (number > max)
                     {
                         max = number;
@@ -149,7 +149,44 @@ namespace Lesson4
                 }
             }
             sr.Close();
-
         }
+
+        public string ArrToStr
+        {
+            get
+            {
+                string stringArr = string.Empty;
+
+                for (int i = 0; i < Array.GetLength(0); i++)
+                {
+                    for (int j = 0; j < Array.GetLength(1); j++)
+                    {
+                        stringArr += Array[i, j] + " ";
+                    }
+
+                    stringArr += "\n";
+                }
+
+                return stringArr;
+            }
+        }
+
+       /// <summary>
+       /// Сохраняет массив в текстовый файл
+       /// </summary>
+       /// <param name="filename">имя файла в который сохраняем</param>
+        public void SaveArr(string filename)
+        {
+
+            using (FileStream fstream = new FileStream(@"..\\..\\"+ filename, FileMode.OpenOrCreate))
+            {
+                // преобразуем строку в байты
+                byte[] array = System.Text.Encoding.Default.GetBytes(ArrToStr);
+                // запись массива байтов в файл
+                fstream.Write(array, 0, array.Length);
+                Console.WriteLine("Текст записан в файл");
+            }
+        }
+
     }
 }
