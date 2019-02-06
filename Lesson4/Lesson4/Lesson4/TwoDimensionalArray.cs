@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.IO;
-using System.Security.Policy;
 
 namespace Lesson4
 {
@@ -133,21 +131,44 @@ namespace Lesson4
         /// <param name="filename">имя файла из которого читаем данные</param>
         public TwoDimensionalArray(string filename)
         {
+            //Выдаст ошибку, если неправильно указали имя файла
+            try
+            {
+                StreamReader srd = new StreamReader("..\\..\\" + filename);
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("ОШИБКА: Нет такого файла");
+//                throw;
+            }
+
             StreamReader sr = new StreamReader("..\\..\\" + filename);
 
-          // Считываем 2 первых строки = размерность двумерного массива
-          int I = int.Parse(sr.ReadLine());
-          int J = int.Parse(sr.ReadLine());
-
-            int[,] filemassive = new int[I,J];
-
-            for (int i = 0; i < I; i++)
+            //Выдаст ошибку если в файле записано не число
+            try
             {
-                for (int j = 0; j < J; j++)
+
+                // Считываем 2 первых строки = размерность двумерного массива
+                int I = int.Parse(sr.ReadLine());
+                int J = int.Parse(sr.ReadLine());
+
+                int[,] filemassive = new int[I, J];
+
+                for (int i = 0; i < I; i++)
                 {
-                    filemassive[i,j] = int.Parse(sr.ReadLine());
+                    for (int j = 0; j < J; j++)
+                    {
+                        filemassive[i, j] = int.Parse(sr.ReadLine());
+                    }
                 }
+
             }
+
+            catch (FormatException format)
+            {
+                Console.WriteLine("ОШИБКА: В файле записано не число");
+            }
+
             sr.Close();
         }
 
@@ -176,16 +197,32 @@ namespace Lesson4
        /// </summary>
        /// <param name="filename">имя файла в который сохраняем</param>
         public void SaveArr(string filename)
-        {
+       {
+           FileStream fstream = null;
 
-            using (FileStream fstream = new FileStream(@"..\\..\\"+ filename, FileMode.OpenOrCreate))
-            {
-                // преобразуем строку в байты
-                byte[] array = System.Text.Encoding.Default.GetBytes(ArrToStr);
-                // запись массива байтов в файл
-                fstream.Write(array, 0, array.Length);
-                Console.WriteLine("Текст записан в файл");
-            }
+           // Открыли поток, выполнинли сохранение, в конце закрыли поток
+           try
+           {
+               fstream = new FileStream(@"..\\..\\" + filename, FileMode.OpenOrCreate);
+
+               // преобразуем строку в байты
+               byte[] array = System.Text.Encoding.Default.GetBytes(ArrToStr);
+               // запись массива байтов в файл
+               fstream.Write(array, 0, array.Length);
+               Console.WriteLine("Текст записан в файл");
+           }
+           catch (Exception e)
+           {
+               Console.WriteLine(e);
+           }
+           finally
+           {
+               if (fstream != null)
+               {
+                   fstream.Close();
+               }
+           }
+
         }
 
     }
