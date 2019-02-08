@@ -4,6 +4,11 @@ namespace Lesson5
 {
     internal partial class Program
     {
+        /// <summary>
+        /// Проверяет длинну логина от 2 до 10 символов
+        /// </summary>
+        /// <param name="login">строка логин</param>
+        /// <returns></returns>
         private static bool LoginWidthOK(string login)
         {
             if (login.Length >= 2 && login.Length <= 10)
@@ -16,6 +21,11 @@ namespace Lesson5
             return false;
         }
 
+        /// <summary>
+        /// Проверяет что содержит только символы и цифры
+        /// </summary>
+        /// <param name="login">строка логин</param>
+        /// <returns></returns>
         private static bool LoginIsSymbOrNumb(string login)
         {
             char[] LoginCharArr = login.ToCharArray();
@@ -33,6 +43,11 @@ namespace Lesson5
             return true;
         }
 
+        /// <summary>
+        /// Проверяет что первый символ не цифра
+        /// </summary>
+        /// <param name="login">строка логин</param>
+        /// <returns></returns>
         private static bool FirstSymbNotNumb(string login)
         {
             char first = login[0];
