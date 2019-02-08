@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Lesson5
 
@@ -16,7 +17,7 @@ namespace Lesson5
 //            Корректным логином будет строка от 2 до 10 символов, содержащая только
 //            буквы латинского алфавита или цифры, при этом цифра не может быть первой:
 //            а) без использования регулярных выражений;
-//            б) **с использованием регулярных выражений.
+
 
             Console.WriteLine("Введите логин");
             string login = Console.ReadLine();
@@ -29,6 +30,19 @@ namespace Lesson5
             {
                 Console.WriteLine("Логин не подходит");
             }
+
+//            б) **с использованием регулярных выражений.
+
+            Regex loginmask = new Regex("[^[a-zA-Z]{1}[a-zA-Z1-9]{1,9}]");
+            if (loginmask.Equals(login))
+            {
+                Console.WriteLine("\nЛогин одобрен regexp");
+            }
+            else
+            {
+                Console.WriteLine("\nЛогин не одобрен regexp");
+            }
+
             #endregion
 
         }
