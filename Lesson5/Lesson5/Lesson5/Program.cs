@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Net;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Web;
 
 namespace Lesson5
 
 
 {
-    internal class Program
+    internal partial class Program
     {
         public static void Main(string[] args)
         {
-
             // Коновалов А.
 
             #region Task1
@@ -27,50 +21,16 @@ namespace Lesson5
             Console.WriteLine("Введите логин");
             string login = Console.ReadLine();
 
-            if (LoginWidthOK(login) && LoginIsSymbol(login))
+            if (LoginWidthOK(login) && LoginIsSymbOrNumb(login) && FirstSymbNotNumb(login))
             {
-                Console.WriteLine("Все ОК полность");
+                Console.WriteLine("Логин одобрен");
             }
             else
             {
-                Console.WriteLine("Все плохо полность");
+                Console.WriteLine("Логин не подходит");
             }
-
             #endregion
 
-
-        }
-
-        private static bool LoginWidthOK(string login)
-        {
-            if (login.Length >= 2 && login.Length <= 10)
-            {
-                Console.WriteLine("Все ОК с длинной логина");
-                return true;
-            }
-            Console.WriteLine("Длинна логина должна быть от 2 до 10 символов");
-            return false;
-
-        }
-
-        private static bool LoginIsSymbol(string login)
-        {
-
-            char[] LoginCharArr = login.ToCharArray();
-
-            foreach (var symbol in LoginCharArr)
-            {
-                if (!char.IsLetterOrDigit(symbol))
-                {
-                    Console.WriteLine("Допустимы только буквы и цифры");
-                    return false;
-                }
-            }
-            Console.WriteLine("Все ОК с символами и цифрами");
-            return true;
-
         }
     }
-
-    }
-
+}
