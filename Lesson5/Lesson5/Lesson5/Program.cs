@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Lesson5
@@ -61,6 +62,16 @@ namespace Lesson5
 
             //строка из самых длинных слов
             Message.LongestWordString(message);
+
+
+            string forcoutmess = "я пошел гулять я и не я";
+            string[] wordsforcounter = new string[]{"я",
+                "пошел",
+                "спать"
+            };
+            
+            Message.WordsCounter(forcoutmess,wordsforcounter);
+
 
 
             #endregion

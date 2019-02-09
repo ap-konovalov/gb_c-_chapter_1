@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Lesson5
@@ -110,6 +111,43 @@ namespace Lesson5
             }
 
             Console.WriteLine($"Строка из самых длинных слов: {LongWordString}");
+        }
+
+        /// <summary>
+        /// Покажет сколько раз во введеннй строке встречаются слова из массива
+        /// </summary>
+        /// <param name="text">Вводимая строка</param>
+        /// <param name="words">Массив со словами, количество повторений которых хотим посчитать</param>
+        public static void WordsCounter(string text, string[] words)
+        {
+
+            Console.WriteLine($"Введена строка: {text} ");
+            
+            Dictionary<string,int> CountOfWord = new Dictionary<string, int>();
+            string[] textArray = text.Split(' ');      
+
+             // добавили все слова из входного массива в словарик и записали что встречаются 0 раз
+            foreach (var word in words)
+            {
+                CountOfWord.Add(word,0);
+            }
+
+//пробежались по всем словам строки которую разделилил на массив, если слово есть в словаре прибавляем ему количество которое оно встречается
+            foreach (var word in textArray)
+            {
+                if (CountOfWord.ContainsKey(word))
+                {
+                    CountOfWord[word] +=1  ;
+                }
+
+            }
+
+            Console.WriteLine("Слова из переданного массива встречаются в тексте раз:");
+            foreach (var keyValuePair in CountOfWord)
+            {
+                Console.WriteLine(keyValuePair);
+            }
+
         }
 
 
