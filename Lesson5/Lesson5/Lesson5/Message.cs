@@ -1,6 +1,4 @@
 using System;
-using System.Data;
-using System.Linq;
 using System.Text;
 
 namespace Lesson5
@@ -77,30 +75,39 @@ namespace Lesson5
 
             return isLongestWord;
         }
-
-        public static string[] DeleteWord(string message)
-        {
-            string[] words = message.Split(' ');
-
-            int indOfLongestWord = Array.IndexOf(words,IsLongestWord(message));
-
-            Array.Clear(words, indOfLongestWord, 1 );
-
-            return words;
-        }
-
+        
+        /// <summary>
+        /// Формирует из строки новую строку, расставив в ней слова от самого длинного к самому короткому
+        /// </summary>
+        /// <param name="message">Входящая строка</param>
         public static void LongestWordString(string message)
         {
             StringBuilder LongWordString = new StringBuilder();
 
-            string[] words = message.Split(' ');
-
-            for (int i = 0; i < 3; i++)
+            string[] words = message.Split(' ');      
+                        
+            //сортировка массива пузырьком
+            var temp = String.Empty;
+            for (int i = 0; i < words.Length; i++)
             {
-                LongWordString.Append(IsLongestWord(message));
-                DeleteWord(message);
+                for (int j = i + 1; j < words.Length; j++)
+                {
+                    if (words[i].Length > words[j].Length)
+                    {
+                        temp = words[i];
+                        words[i] = words[j];
+                        words[j] = temp;
+                    }                   
+                }            
             }
 
+            //Создаем нову строку прикрепляя в нее поочередно все слова из массива
+            for (int i = words.Length-1; i >= 0  ; i--)
+            {
+
+                LongWordString.Append($"{words[i]} ");
+
+            }
 
             Console.WriteLine($"Строка из самых длинных слов: {LongWordString}");
         }
