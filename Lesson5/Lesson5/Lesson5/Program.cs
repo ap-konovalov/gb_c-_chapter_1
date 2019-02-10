@@ -72,7 +72,15 @@ namespace Lesson5
             
             Message.WordsCounter(forcoutmess,wordsforcounter);
 
+            #endregion
 
+            #region Task 3
+            
+//            *Для двух строк написать метод, определяющий, является ли одна строка перестановкой другой.
+//            Например:
+//            badc являются перестановкой abcd.
+
+            Message.backToFrontString("asdf","fssa");
 
             #endregion
             

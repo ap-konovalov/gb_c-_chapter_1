@@ -149,6 +149,42 @@ namespace Lesson5
             }
 
         }
+        
+        
+        /// <summary>
+        /// Проверятет является ли строка 2 обратной строке 1
+        /// </summary>
+        /// <param name="message">Строка 1</param>
+        /// <param name="backmessage">Строка 2</param>
+        public static void backToFrontString(string message, string backmessage)
+        {
+            if (message.Length == backmessage.Length)
+            {
+                var charmess = message.ToCharArray();
+                var charbackmess = backmessage.ToCharArray();
+                
+                var count = 0;
+                
+                foreach (var ch in charmess)
+                {
+                    if (ch == charbackmess[charbackmess.Length - 1 - count])
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Строка 2 не является обратной строке 1");  
+                        return;
+                    }
+                }
+                
+                Console.WriteLine("Строка 2 является обратной строке 1");  
+            }
+            else
+            {
+                Console.WriteLine("Длинна строк не совпадает");
+            }
+        }
 
 
     }
