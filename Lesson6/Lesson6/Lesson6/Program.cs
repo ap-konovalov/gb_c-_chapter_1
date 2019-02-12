@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Globalization;
 using System.IO;
 using System.Linq.Expressions;
@@ -164,6 +165,68 @@ namespace Lesson6
                 }
 
 //              TODO 1:  Пусть она возвращает минимум через параметр (с использованием модификатора out).
+
+                #endregion
+
+                #region Task 3
+
+                int fivecourse = 0;
+                int sixcouse = 0;
+
+                // Создадим необобщенный список
+                ArrayList list = new ArrayList();
+                // Запомним время в начале обработки данных
+                DateTime dt = DateTime.Now;
+                StreamReader sr = new StreamReader("..\\..\\students_1.csv");
+
+
+                int[] studentoncourse = new int[7];
+
+                while(!sr.EndOfStream)
+                {
+                    try {
+                        string[] s = sr.ReadLine().Split(';');
+                        // Console.WriteLine("{0}", s[0], s[1], s[2], s[3], s[4]);
+                        list.Add(s[1]+" "+s[0]);// Добавляем склееные имя и фамилию
+                        int age = int.Parse(s[5]);
+                        int course = int.Parse(s[6]);
+
+                        //Если студенту от 18 до 20 в элемент массива с индексом = номер курса плюсанем 1
+
+                        if (age >= 18 && age <= 20)
+                        {
+                            studentoncourse[course] = studentoncourse[course]+1;
+                        }
+
+//                      Проверим на каком курсе студент и плюсанем туда
+                        switch (course)
+                        {
+                            case 5: fivecourse++; break;
+                            case 6: sixcouse++; break;
+
+                        }
+// TODO 2: Задача 3 от п.б
+                    }
+                    catch
+                    {
+                    }
+
+                }
+                sr.Close();
+                list.Sort();
+                foreach (var course in studentoncourse)
+                {
+                    Console.WriteLine(course);
+                }
+
+                Console.WriteLine("Всего студентов:{0}", list.Count);
+                Console.WriteLine("Студентов на 6 курсе:{0}", sixcouse);
+                Console.WriteLine("Cтудентов на 5 курсе:{0}", fivecourse);
+//                foreach (var v in list) Console.WriteLine(v);
+                // Вычислим время обработки данных
+                Console.WriteLine(DateTime.Now - dt);
+                Console.ReadKey();
+
 
                 #endregion
             }
