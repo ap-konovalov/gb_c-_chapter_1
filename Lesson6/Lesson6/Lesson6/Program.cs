@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq.Expressions;
@@ -14,6 +15,36 @@ namespace Lesson6
 
     public delegate double FunTask2(double x);
 
+    #region T3
+
+    class Student
+    {
+        public string lastName;
+        public string firstName;
+        public string university;
+        public string faculty;
+        public int course;
+        public string department;
+        public int group;
+        public string city;
+        public int age;
+
+        public Student(string firstName, string lastName, string university, string faculty, string department, int course,int age, int group, string city)
+        {
+            this.lastName = lastName;
+            this.firstName = firstName;
+            this.university = university;
+            this.faculty = faculty;
+            this.department = department;
+            this.course = course;
+            this.age = age;
+            this.group = group;
+            this.city = city;
+        }
+
+    }
+
+    #endregion
 
     internal class Program
     {
@@ -72,11 +103,11 @@ namespace Lesson6
             fs.Close();
         }
 
-        public static double Load(string fileName)
+        public static double[] Load(string fileName, out double min)
             {
                 FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
                 BinaryReader bw = new BinaryReader(fs);
-                double min = double.MaxValue;
+                min = double.MaxValue;
                 double d;
 
                 // определяем количество чисел в двоичном потоке
@@ -94,20 +125,10 @@ namespace Lesson6
 
                     if (d < min) min = d;
                 }
-
-// выводим элементы массива
-                Console.WriteLine("В результате работы функции сгенерированы следующие числа: ");
-                foreach (var numb in readedVal)
-                {
-                    Console.WriteLine(numb);
-                }
-
-
                 bw.Close();
                 fs.Close();
 
-                Console.WriteLine("Минимальное число:");
-                return min;
+                return readedVal;
 
             }
 
@@ -115,7 +136,17 @@ namespace Lesson6
 
         #endregion
 
-            public static void Main(string[] args)
+static int MyDelegatByName(Student st1, Student st2)          // Создаем метод для сравнения для экземпляров
+        {
+            return String.Compare(st1.firstName, st2.firstName);          // Сравниваем две строки
+        }
+
+        static int MyDelegatByAge(Student st1, Student st2)
+        {
+            return st1.age.CompareTo(st2.age);
+        }
+
+        public static void Main(string[] args)
             {
                 //Коновалов А.
 
@@ -160,42 +191,58 @@ namespace Lesson6
                     Console.WriteLine("Введите b = конец отрезка, для которого считаем минимум :");
                     int b = Int32.Parse(Console.ReadLine());
 
+                    double min;
                     SaveFunc(delegateArr[requestFunction-1],"data.bin", a, b, 0.5);
-                    Console.WriteLine(Load("data.bin"));
-                }
 
-//              TODO 1:  Пусть она возвращает минимум через параметр (с использованием модификатора out).
+                    //Выводим данные из возвращенного нам из Load массива
+                    foreach (var numb in Load("data.bin",out min))
+                    {
+                        Console.WriteLine(numb);
+                    }
+
+                    //Выводим минимальное число, значение которого передано нам по ссылке из Load
+                    Console.WriteLine($"Минимальное число: {min}");
+
+                }
 
                 #endregion
 
                 #region Task 3
 
+//                Переделать программу Пример использования коллекций для решения следующих задач:
+//                а) Подсчитать количество студентов учащихся на 5 и 6 курсах;
+//                б) подсчитать сколько студентов в возрасте от 18 до 20 лет на каком курсе учатся (*частотный массив);
+//                в) отсортировать список по возрасту студента;
+//                г) *отсортировать список по курсу и возрасту студента;
+
+
                 int fivecourse = 0;
                 int sixcouse = 0;
 
-                // Создадим необобщенный список
-                ArrayList list = new ArrayList();
+
+                List<Student> list = new List<Student>();
+
                 // Запомним время в начале обработки данных
                 DateTime dt = DateTime.Now;
                 StreamReader sr = new StreamReader("..\\..\\students_1.csv");
 
 
-                int[] studentoncourse = new int[7];
+                int[] studentoncourse = new int[6];
 
                 while(!sr.EndOfStream)
                 {
                     try {
                         string[] s = sr.ReadLine().Split(';');
-                        // Console.WriteLine("{0}", s[0], s[1], s[2], s[3], s[4]);
-                        list.Add(s[1]+" "+s[0]);// Добавляем склееные имя и фамилию
+                        list.Add(new Student(s[0],s[1],s[2],s[3],s[4],int.Parse(s[5]),int.Parse(s[6]),int.Parse(s[7]),s[8]));// Добавляем склееные имя и фамилию
+
                         int age = int.Parse(s[5]);
                         int course = int.Parse(s[6]);
 
-                        //Если студенту от 18 до 20 в элемент массива с индексом = номер курса плюсанем 1
+                        //Если студенту от 18 до 20 в элемент массива с индексом = номер курса плюсанем 1 пишем course-1 потому что нулевого курса нет
 
                         if (age >= 18 && age <= 20)
                         {
-                            studentoncourse[course] = studentoncourse[course]+1;
+                            studentoncourse[course-1] = studentoncourse[course-1]+1;
                         }
 
 //                      Проверим на каком курсе студент и плюсанем туда
@@ -205,7 +252,7 @@ namespace Lesson6
                             case 6: sixcouse++; break;
 
                         }
-// TODO 2: Задача 3 от п.б
+
                     }
                     catch
                     {
@@ -213,20 +260,26 @@ namespace Lesson6
 
                 }
                 sr.Close();
-                list.Sort();
-                foreach (var course in studentoncourse)
+
+                //отсортируем студентов по возрасту
+                list.Sort(MyDelegatByAge);
+
+                //выводим сколько студентов от 18 до 20 на каком курсе учатся
+                foreach (var count in studentoncourse)
                 {
-                    Console.WriteLine(course);
+                    Console.WriteLine($"На {Array.IndexOf(studentoncourse,count) + 1} курсе {count} студентов от 18 до 20");
                 }
 
-                Console.WriteLine("Всего студентов:{0}", list.Count);
+                Console.WriteLine("Всего студентов:" + list.Count);
                 Console.WriteLine("Студентов на 6 курсе:{0}", sixcouse);
                 Console.WriteLine("Cтудентов на 5 курсе:{0}", fivecourse);
-//                foreach (var v in list) Console.WriteLine(v);
+
                 // Вычислим время обработки данных
                 Console.WriteLine(DateTime.Now - dt);
-                Console.ReadKey();
 
+                foreach (var v in list) Console.WriteLine(v.firstName);
+
+                Console.ReadKey();
 
                 #endregion
             }
