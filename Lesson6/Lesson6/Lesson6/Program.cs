@@ -29,7 +29,7 @@ namespace Lesson6
         public string city;
         public int age;
 
-        public Student(string firstName, string lastName, string university, string faculty, string department, int course,int age, int group, string city)
+        public Student(string firstName, string lastName, string university, string faculty, string department, int age,int course, int group, string city)
         {
             this.lastName = lastName;
             this.firstName = firstName;
@@ -136,14 +136,23 @@ namespace Lesson6
 
         #endregion
 
-static int MyDelegatByName(Student st1, Student st2)          // Создаем метод для сравнения для экземпляров
+        // Создаем метод для сравнения для экземпляров по имени
+        static int MyDelegatByName(Student st1, Student st2)
         {
             return String.Compare(st1.firstName, st2.firstName);          // Сравниваем две строки
         }
 
+        // Создаем метод для сравнения для экземпляров по возрасту
         static int MyDelegatByAge(Student st1, Student st2)
         {
             return st1.age.CompareTo(st2.age);
+        }
+
+        // Создаем метод для сравнения для экземпляров по возрасту и курсу
+        static int MyDelegatByAgeAndCourse(Student st1, Student st2)
+        {
+            var myDelegatByAgeAndCourse = st1.age.CompareTo(st2.age);
+            return myDelegatByAgeAndCourse == 0 ? st1.course.CompareTo(st2.course) : myDelegatByAgeAndCourse;
         }
 
         public static void Main(string[] args)
@@ -261,8 +270,8 @@ static int MyDelegatByName(Student st1, Student st2)          // Создаем 
                 }
                 sr.Close();
 
-                //отсортируем студентов по возрасту
-                list.Sort(MyDelegatByAge);
+                //отсортируем студентов по возрасту и курсу
+                list.Sort(MyDelegatByAgeAndCourse);
 
                 //выводим сколько студентов от 18 до 20 на каком курсе учатся
                 foreach (var count in studentoncourse)
@@ -277,7 +286,7 @@ static int MyDelegatByName(Student st1, Student st2)          // Создаем 
                 // Вычислим время обработки данных
                 Console.WriteLine(DateTime.Now - dt);
 
-                foreach (var v in list) Console.WriteLine(v.firstName);
+                foreach (var v in list) Console.WriteLine($"{v.firstName} {v.age} {v.course}");
 
                 Console.ReadKey();
 
