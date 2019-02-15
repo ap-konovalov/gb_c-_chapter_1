@@ -43,6 +43,7 @@
             this.отменитьХодToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label3 = new System.Windows.Forms.Label();
             this.lblExpectedResult = new System.Windows.Forms.Label();
+            this.поигратьВУгадайЧислоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -135,12 +136,14 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.игратьToolStripMenuItem1,
-            this.отменитьХодToolStripMenuItem});
+            this.отменитьХодToolStripMenuItem,
+            this.поигратьВУгадайЧислоToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(436, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // игратьToolStripMenuItem1
             // 
@@ -174,6 +177,13 @@
             this.lblExpectedResult.Size = new System.Drawing.Size(10, 13);
             this.lblExpectedResult.TabIndex = 10;
             this.lblExpectedResult.Text = "-";
+            // 
+            // поигратьВУгадайЧислоToolStripMenuItem
+            // 
+            this.поигратьВУгадайЧислоToolStripMenuItem.Name = "поигратьВУгадайЧислоToolStripMenuItem";
+            this.поигратьВУгадайЧислоToolStripMenuItem.Size = new System.Drawing.Size(156, 20);
+            this.поигратьВУгадайЧислоToolStripMenuItem.Text = "Поиграть в угадай число";
+            this.поигратьВУгадайЧислоToolStripMenuItem.Click += new System.EventHandler(this.поигратьВУгадайЧислоToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -217,6 +227,7 @@
         private System.Windows.Forms.ToolStripMenuItem отменитьХодToolStripMenuItem;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblExpectedResult;
+        private System.Windows.Forms.ToolStripMenuItem поигратьВУгадайЧислоToolStripMenuItem;
     }
 }
 

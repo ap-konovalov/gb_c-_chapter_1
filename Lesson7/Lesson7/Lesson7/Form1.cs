@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.Application;
 
 namespace Lesson7
 {
@@ -114,5 +115,18 @@ namespace Lesson7
             }
            
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void поигратьВУгадайЧислоToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+          Form f2 = new Form2();
+            f2.Show();
+        }
     }
+
+
 }
