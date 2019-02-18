@@ -57,7 +57,6 @@
             this.lblNumberResult.Size = new System.Drawing.Size(18, 20);
             this.lblNumberResult.TabIndex = 0;
             this.lblNumberResult.Text = "0";
-            this.lblNumberResult.Click += new System.EventHandler(this.lblNumberResult_Click);
             // 
             // btnReset
             // 
@@ -98,7 +97,6 @@
             this.label1.Size = new System.Drawing.Size(216, 24);
             this.label1.TabIndex = 4;
             this.label1.Text = "Результат вычисления";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -108,7 +106,7 @@
             this.label2.Size = new System.Drawing.Size(101, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Количество ходов:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+
             // 
             // lblOperationsCount
             // 
@@ -167,7 +165,6 @@
             this.label3.Size = new System.Drawing.Size(92, 13);
             this.label3.TabIndex = 9;
             this.label3.Text = "Получаем число:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // lblExpectedResult
             // 
@@ -202,7 +199,7 @@
             this.Controls.Add(this.lblNumberResult);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+
             this.contextMenuStrip1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

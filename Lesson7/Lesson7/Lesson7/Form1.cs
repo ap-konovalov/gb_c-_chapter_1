@@ -24,7 +24,6 @@ namespace Lesson7
             btnMultiply.Text = "x2";
             lblNumberResult.Text = "0";
             this.Text = "Удвоитель";
-            
         }
 
         private void WinCheck(string result)
@@ -34,12 +33,6 @@ namespace Lesson7
                 MessageBox.Show("ПОБЕДА!!!");
             }
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void btnReset_Click(object sender, EventArgs e)
         {
@@ -71,11 +64,6 @@ namespace Lesson7
             WinCheck(lblNumberResult.Text);
         }
 
-        private void lblNumberResult_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void игратьToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Random numRandom = new Random();
@@ -84,21 +72,6 @@ namespace Lesson7
             lblExpectedResult.Text = expectedResult ;
             lblNumberResult.Text = "0";
             lblOperationsCount.Text = "0";
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void отменитьХодToolStripMenuItem_Click(object sender, EventArgs e)
